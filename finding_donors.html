@@ -13299,7 +13299,7 @@ div#notebook {
 <span class="n">n_at_most_50k</span> <span class="o">=</span> <span class="n">n_records</span><span class="o">-</span><span class="n">n_greater_50k</span>
 
 <span class="c1"># TODO: Percentage of individuals whose income is more than $50,000</span>
-<span class="n">greater_percent</span> <span class="o">=</span> <span class="n">n_greater_50k</span><span class="o">/</span><span class="n">n_records</span>
+<span class="n">greater_percent</span> <span class="o">=</span> <span class="n">n_greater_50k</span><span class="o">/</span><span class="n">n_records</span> <span class="o">*</span> <span class="mi">100</span>
 
 <span class="c1"># Print the results</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total number of records: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_records</span><span class="p">))</span>
@@ -13325,7 +13325,7 @@ div#notebook {
 <pre>Total number of records: 45222
 Individuals making more than $50,000: 11208
 Individuals making at most $50,000: 34014
-Percentage of individuals making more than $50,000: 0.2478439697492371%
+Percentage of individuals making more than $50,000: 24.78439697492371%
 </pre>
 </div>
 </div>
@@ -13926,23 +13926,28 @@ It is a ratio of true positives(words classified as spam, and which are actually
 <ol>
 <li>Classifying students by their interest and assign them into the right class.</li>
 <li>It clearly classifies data when the features are distinctive and categorial.  </li>
-<li>It is prone to overfit; methods like Random Forest and limiting parameters like the number of samples for each leaf are needed to prevent the problem.</li>
+<li>It is prone to overfit; methods like Random Forest and limiting parameters like the number of samples for each leaf are needed to prevent the problem.  - Udacity</li>
 <li>Since there are limited amount of elements in each feature and features itself, it is easier to predict what feature and what element of each feature contribute to one's income being over 50K or not.</li>
 </ol>
 <p>-Ensemble Methods-</p>
 <ol>
 <li>Creating art works - Since it prevents overfitting, we can reduce the possibility for the AI to produce overfitted result, which will be easily recognized by the audience and also it does not require fast-time calculation.</li>
-<li>It combines other methods, a.k.a. weak learners, and return the most democratic result and through "voting." It can successfully prevent overfitting of one single model.</li>
-<li>Due to its complexity through combination, it can lack transparency and overfit. This model can also easily affected by outliers. In addition, it is a comparively slow model.</li>
-<li>Since the data's features are variant, Ensemble Method can react to different situations with different weak learners.</li>
+<li>It combines other methods, a.k.a. weak learners, and return the most democratic result and through "voting." AdaBoostClassifer, in particular, "can achieve similar classification (as SVM) results with much less tweaking of parameters or settings." - NickGillianWiki , and is good for binary classification. - Jason Brownlee</li>
+<li>Due to its complexity through combination, it can lack transparency and overfit. It is also a comparively slow model. AdaBoostClassifier punishes misclassified data with weight, so it is prone to react sensitively to outliers.</li>
+<li>Finding donors is not required to be fast since it is not an on-time calculation. Instead of time, accuracy is more important factor. That is why I think Ensemble Method can be a good model for this problem.</li>
 </ol>
 <p>-Gaussian Naive Bayes-</p>
 <ol>
 <li>AI that reads textbooks and return simplified and easily understandable knowledge.</li>
 <li>It is easy to implement and efficient even in large data sets.</li>
-<li>When more than two features are dependent, since the algorithm assumes they are independent, it very likely for us to have unexpected results.</li>
-<li>Given data have features that are somewhat independent from each other. Naive Bayes algorithm is very efficient in these cases.</li>
+<li>When more than two features are dependent, since the algorithm assumes they are independent, it very likely for us to have unexpected results. - Udacity</li>
+<li>Even though, there may be a little of dependency between features, given data have features that are relatively independent from each other, since there is no factor that completely determines the outcome of another feature. Naive Bayes algorithm is considered efficient in these cases.</li>
 </ol>
+<p>Citation</p>
+<p><a href="https://www.youtube.com/watch?v=nfbKTrufPOs">https://www.youtube.com/watch?v=nfbKTrufPOs</a> - Udacity, "Navie Bayes Strengths and Weakness"
+<a href="https://www.youtube.com/watch?v=KGnhg76iRfI">https://www.youtube.com/watch?v=KGnhg76iRfI</a> - Udacity, " DT Strengths and Weakness"
+<a href="http://www.nickgillian.com/wiki/pmwiki.php/GRT/AdaBoost">http://www.nickgillian.com/wiki/pmwiki.php/GRT/AdaBoost</a> - NickGillianWiki, "Ada Boost"
+<a href="https://machinelearningmastery.com/boosting-and-adaboost-for-machine-learning/">https://machinelearningmastery.com/boosting-and-adaboost-for-machine-learning/</a> - Jason Brownlee, "Boosting and AdaBoost for Machine Learning"</p>
 
 </div>
 </div>
@@ -14164,9 +14169,9 @@ Look at the graph at the bottom left from the cell above(the visualization creat
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
-<p>Based on the metrics, ensemble method has the highest F score on the testing in every size of the sample.
+<p>Based on the metrics, Ada Boost has the highest F score on the testing in every size of the sample.
 However, prediction/training time is very high in this method compared to other models.
-In case like finding a charity doner, amout of time taken to process seems like a less important to consider compared to accuracy or f_score. Therefore, ensemble method is the most suitable model to utilize out of these three algorithms.</p>
+In case like finding a charity doner, amout of time taken to process seems like a less important to consider compared to accuracy or f_score. Therefore, ensemble method is the most suitable model to utilize out of these three algorithms. Since we are finding the data either has an income over 50k or not (binary), AdaBoostClassifier with the base model of Decision Tree with the max depth of 1 can have a huge advantage.</p>
 
 </div>
 </div>
@@ -14187,7 +14192,14 @@ In case like finding a charity doner, amout of time taken to process seems like 
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
-<p>Hi, CharityML. This is Seyeon Lee, your machine learning advisor. Our team had a meeting in order to decide which algorithm to apply to meet your satisfaction at the best. After an in-deep exploration of the most optimized model, we all have come to an agreement to use "Ensemble Method" for your case. Ensemble Method is an algorithm which collects results from multiple different models that were fed different random samples of data, also known as weak learners, and uses those results to make the best decision. This means we can near-maximize our accuracy by using multiple models to conclude our predictions rather than using one single model. However, this model also has its own downside -- it takes more time to process than many other models just because it is a complicated model that includes combining multiple models. In our model selection, we prioritized accuracy over time to be more suitable to your case.</p>
+
+<pre><code>Hi, CharityML. This is Seyeon Lee, your machine learning advisor. Our team had a meeting in order to decide which algorithm to apply to meet your satisfaction at the best. After an in-deep exploration of the most optimized model, we all have come to an agreement to use "Ensemble Method - Ada Boost Classifer" for your case. Ensemble Method is an algorithm which collects results from multiple different models that were fed different random samples of data and uses those results to make the best decision. This means we can near-maximize our accuracy by using multiple models to conclude our predictions rather than using one single model.There are many algorithms exist under the category of "Ensemble Methods," including algorithms like random forests, bagging, and boosting. 
+Ada Boost Classifier, the algorithm we are using, "is best used to boost the performance of decision trees on binary classification problems." (Jason Brownlee, Boosting and AdaBoost for Machine Learning) Ada Boost Classifier is trained by multiple small models, in this case, Decision Trees. After the first Decision Tree finishes its classification, the model weigh the misclassifed data. The second Decsion Tree than classify the dataset again but with weighted data. This produces different classification in a way to minimize the error. Ada Boost Classifier repeats this process until it hits the limit of the number of small models we provided. The results from these small models go through one big mathematical calculation and make predictions. When a new datum is added, it will go through each small model, be weighted, and be evaluated at the very last step with its final weighted value. (Jason) This model, however, also has its own downside -- it takes more time to process than many other models just because it is a complicated model that includes combining multiple models. In our model selection, we prioritized accuracy over time to be more suitable to your case.
+
+</code></pre>
+<p>Citiation
+<a href="https://machinelearningmastery.com/boosting-and-adaboost-for-machine-learning/">https://machinelearningmastery.com/boosting-and-adaboost-for-machine-learning/</a> -- Jason Brownlee, "Boosting and AdaBoost for Machine Learning"
+&amp; Udacity</p>
 
 </div>
 </div>
@@ -14325,13 +14337,13 @@ Final F-score on the testing data: 0.6695
 <tbody>
 <tr>
 <td style="text-align:center">Accuracy Score</td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
+<td style="text-align:center">0.8576</td>
+<td style="text-align:center">0.8375</td>
 </tr>
 <tr>
 <td style="text-align:center">F-score</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">EXAMPLE</td>
+<td style="text-align:center">0.7246</td>
+<td style="text-align:center">0.6695</td>
 </tr>
 </tbody>
 </table>
@@ -14460,7 +14472,7 @@ Other feature, such as race, nationality, or gender, seemed like categories that
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
 <p>Far from identical.
-I would say it was not that close. The answers I put on Question 6, even though I made it like I had the right reason to list them in the order, it was apparent that it reflected my own opinion of how the world should work. I think these features were more releveant, because each feature split the data more clearly and independently.</p>
+I would say it was not that close. The answers I put on Question 6, even though I made it like I had the right reason to list them in the order, it was apparent that it reflected my own opinion of how the world should work. I think these features were more releveant, because each feature split the data more clearly and independently. Capitol loss and gain represent the actual economic activity of an individual. Education-num seems to matter because our society pay educated people more due to their credibility. I assumed hours-per-week to be simillar among all the full-time working individuals. However, it seems like the dataset also inculded part-time workers and the unemployed. For the age feature, it is very unlikely to have an income over 50k when you're young due to your career maturity and experience.</p>
 
 </div>
 </div>
@@ -14595,7 +14607,7 @@ If training time was a factor, training on reduced data seems legitimate, since 
 
 <div class="output_text output_subarea output_execute_result">
 <pre>[&#39;[NbConvertApp] Converting notebook finding_donors.ipynb to html&#39;,
- &#39;[NbConvertApp] Writing 494318 bytes to finding_donors.html&#39;]</pre>
+ &#39;[NbConvertApp] Writing 498223 bytes to finding_donors.html&#39;]</pre>
 </div>
 
 </div>
